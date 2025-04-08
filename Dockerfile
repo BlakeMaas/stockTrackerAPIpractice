@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy everything into the container
 COPY . /app
 
+ARG SECRET_KEY
+ENV SECRET_KEY=$SECRET_KEY
+
 # Install pip dependencies
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
