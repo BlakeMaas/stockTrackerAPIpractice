@@ -23,3 +23,4 @@ This project includes a CI/CD pipeline using GitHub Actions:
 
 Docker image: `ghcr.io/blakemaas/stocktrackerapipractice:latest`
 
+![CI](https://github.com/BlakeMaas/stockTrackerAPIpractice/actions/workflows/ci-cd.yml/badge.svg)
