@@ -1,0 +1,3 @@
+  streamlit
+  alpha_vantage
+  pytest
