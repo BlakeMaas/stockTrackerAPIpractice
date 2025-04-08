@@ -1,26 +1,21 @@
-# Streamlit Stock Tracker
+# 📈 Streamlit Stock Tracker
 
-This is a simple Streamlit app that allows users to search for a stock symbol (like `AAPL` or `TSLA`) and view historical price data using the Alpha Vantage API.
+A simple Streamlit app that allows users to search for stock symbols (like `AAPL` or `TSLA`) and view historical price data using the Alpha Vantage API.
 
-## Features
-- Live stock data (Daily OHLC)
-- Chart and table views
+---
+
+## 🚀 Features
+- Live stock data (daily OHLC)
+- Interactive chart and data table
 - Built with Streamlit
+- Dockerized and CI/CD enabled
 - Deployed on Streamlit Community Cloud
 
-## Setup
-1. Clone the repo
-2. Install requirements: `pip install -r requirements.txt`
-3. Add your API key to `.streamlit/secrets.toml`:
-```toml
-ALPHA_VANTAGE_API_KEY = "your-key-here"
+---
 
-## CI/CD & Docker
+## 🛠️ Setup (Local Development)
 
-This project includes a CI/CD pipeline using GitHub Actions:
-- Runs tests on every push or PR
-- Builds and pushes a Docker image to GitHub Container Registry on successful tests
-
-Docker image: `ghcr.io/blakemaas/stocktrackerapipractice:latest`
-
-![CI](https://github.com/BlakeMaas/stockTrackerAPIpractice/actions/workflows/ci-cd.yml/badge.svg)
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/BlakeMaas/stockTrackerAPIpractice.git
+   cd stockTrackerAPIpractice
