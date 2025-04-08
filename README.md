@@ -14,3 +14,12 @@ This is a simple Streamlit app that allows users to search for a stock symbol (l
 3. Add your API key to `.streamlit/secrets.toml`:
 ```toml
 ALPHA_VANTAGE_API_KEY = "your-key-here"
+
+## CI/CD & Docker
+
+This project includes a CI/CD pipeline using GitHub Actions:
+- Runs tests on every push or PR
+- Builds and pushes a Docker image to GitHub Container Registry on successful tests
+
+Docker image: `ghcr.io/blakemaas/stocktrackerapipractice:latest`
+
