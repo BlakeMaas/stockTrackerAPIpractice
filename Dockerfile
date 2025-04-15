@@ -1,21 +1,21 @@
-# Use official slim Python base image
+# Use official Python base image
 FROM python:3.10-slim
 
-# Set working directory in the container
+# Accept build-time secret
+ARG ALPHA_VANTAGE_API_KEY
+ENV ALPHA_VANTAGE_API_KEY=$ALPHA_VANTAGE_API_KEY
+
+# Set workdir
 WORKDIR /app
 
-# Copy everything into the container
-COPY . /app
+# Copy files
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-ARG SECRET_KEY
-ENV SECRET_KEY=$SECRET_KEY
+COPY . .
 
-# Install pip dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-# Expose the port Streamlit runs on
+# Expose default Streamlit port
 EXPOSE 8501
 
-# Run the Streamlit app
-CMD ["streamlit", "run", "main.py", "--server.enableCORS=false"]
+# Run Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
