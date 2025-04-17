@@ -1,2 +1,2 @@
- def test_placeholder():
-     assert 1 + 1 == 2
+def test_placeholder():
+    assert True  # This test just passes no matter what
