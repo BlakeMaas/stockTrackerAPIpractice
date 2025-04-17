@@ -64,7 +64,7 @@ else:
     """, unsafe_allow_html=True)
 
 # --- TITLE ---
-st.title("📈 Stock Tracker")
+st.title("Stock Tracker")
 
 # --- Compare Mode Toggle ---
 compare_mode = st.checkbox("Compare with another stock?")
@@ -114,10 +114,10 @@ if symbol1 and (not compare_mode or symbol2):
             st.dataframe(df2.tail(10))
 
     elif "Note" in raw1:
-        st.warning("⚠️ API rate limit exceeded. Try again in about 60 seconds.")
+        st.warning("oopsie: API rate limit exceeded. Try again in about 60 seconds.")
     elif "Error Message" in raw1:
-        st.error(f"❌ Error for {symbol1}: {raw1['Error Message']}")
+        st.error(f" Error for {symbol1}: {raw1['Error Message']}")
     elif "Information" in raw1:
-        st.warning("ℹ️ Info: API limit reached or invalid key.")
+        st.warning("Info: API limit reached or invalid key.")
     else:
-        st.error("❌ Failed to fetch data. Please check your API key and stock symbol.")
+        st.error(" Failed to fetch data. Please check your API key and stock symbol.")
