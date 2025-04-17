@@ -6,9 +6,56 @@ import pandas as pd
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
 
-# --- Simulated Theme Toggle (informational only) ---
-theme = st.radio("Choose Theme", ["Dark", "Light"], horizontal=True)
-st.caption("⚠️ Theme changes require browser refresh to fully apply.")
+# --- THEME TOGGLE ---
+theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
+
+# --- Inject CSS based on theme selection ---
+if theme == "Dark":
+    st.markdown("""
+        <style>
+            body, .stApp {
+                background-color: #0e1117;
+                color: #fafafa;
+            }
+            .stTextInput > div > div > input {
+                color: #fafafa;
+                background-color: #262730;
+            }
+            div[data-baseweb="radio"] label {
+                color: #fafafa !important;
+            }
+            .stButton>button {
+                background-color: #262730;
+                color: #fafafa;
+            }
+            .stDataFrame, .stTable {
+                color: #fafafa;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+else:
+    st.markdown("""
+        <style>
+            body, .stApp {
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .stTextInput > div > div > input {
+                color: #000000;
+                background-color: #f0f2f6;
+            }
+            div[data-baseweb="radio"] label {
+                color: #000000 !important;
+            }
+            .stButton>button {
+                background-color: #f0f2f6;
+                color: #000000;
+            }
+            .stDataFrame, .stTable {
+                color: #000000;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
 # --- APP TITLE ---
 st.title("📈 Stock Tracker")
