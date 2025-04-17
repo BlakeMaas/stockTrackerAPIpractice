@@ -38,30 +38,28 @@ if theme == "Dark":
     """, unsafe_allow_html=True)
 else:
         st.markdown("""
-        <style>
-            body, .stApp {
-                background-color: #ffffff;
-                color: #000000;
-            }
-            .stTextInput > div > div > input {
-                color: #000000;
-                background-color: #f0f2f6;
-            }
-            div[data-baseweb="radio"] * {
-                color: #000000 !important;
-            }
-            .stRadio label, .stRadio div {
-                color: #000000 !important;
-            }
-            .stButton>button {
-                background-color: #f0f2f6;
-                color: #000000;
-            }
-            .stDataFrame, .stTable {
-                color: #000000;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+    <style>
+        body, .stApp {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .stTextInput > div > div > input {
+            color: #000000;
+            background-color: #f0f2f6;
+        }
+        label, div[data-baseweb="radio"] * {
+            color: #000000 !important;
+        }
+        .stButton>button {
+            background-color: #f0f2f6;
+            color: #000000;
+        }
+        .stDataFrame, .stTable {
+            color: #000000;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 
 
 
