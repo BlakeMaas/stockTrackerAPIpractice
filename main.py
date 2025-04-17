@@ -37,7 +37,7 @@ if theme == "Dark":
         </style>
     """, unsafe_allow_html=True)
 else:
-    st.markdown("""
+        st.markdown("""
         <style>
             body, .stApp {
                 background-color: #ffffff;
@@ -47,10 +47,10 @@ else:
                 color: #000000;
                 background-color: #f0f2f6;
             }
-            div[data-baseweb="radio"] label {
+            div[data-baseweb="radio"] * {
                 color: #000000 !important;
             }
-            .stRadio > div {
+            .stRadio label, .stRadio div {
                 color: #000000 !important;
             }
             .stButton>button {
@@ -62,6 +62,7 @@ else:
             }
         </style>
     """, unsafe_allow_html=True)
+
 
 
 # --- APP TITLE ---
