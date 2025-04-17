@@ -25,6 +25,10 @@ if theme == "Dark":
                 background-color: #262730;
                 color: #fafafa;
             }
+            /* Force radio button text to be light */
+            div[data-baseweb="radio"] label {
+                color: #fafafa !important;
+            }
         </style>
     """, unsafe_allow_html=True)
 else:
@@ -41,6 +45,10 @@ else:
             .css-1d391kg, .css-1cpxqw2, .stButton>button {
                 background-color: #f0f2f6;
                 color: #000000;
+            }
+            /* Force radio button text to be dark */
+            div[data-baseweb="radio"] label {
+                color: #000000 !important;
             }
         </style>
     """, unsafe_allow_html=True)
