@@ -3,13 +3,13 @@ import streamlit as st
 from utils import fetch_daily_stock_data
 import pandas as pd
 
-# --- PAGE CONFIG ---
+# PAGE CONFIG
 st.set_page_config(page_title="Stock Tracker", layout="centered")
 
-# --- THEME TOGGLE ---
+# THEME TOGGLE
 theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
 
-# --- Inject CSS based on theme selection ---
+#Inject CSS based on theme selection
 if theme == "Dark":
     st.markdown("""
         <style>
@@ -37,31 +37,41 @@ if theme == "Dark":
         </style>
     """, unsafe_allow_html=True)
 else:
-        st.markdown("""
+       st.markdown("""
     <style>
         body, .stApp {
             background-color: #ffffff;
             color: #000000;
         }
+
+        /* Input box styling */
         .stTextInput > div > div > input {
             color: #000000;
             background-color: #f0f2f6;
         }
-        label, div[data-baseweb="radio"] * {
+
+        /* Input field label (e.g. "Enter a stock symbol") */
+        .stTextInput label {
             color: #000000 !important;
         }
-        .stButton>button {
+
+        /* Radio button labels and internal text */
+        div[data-baseweb="radio"] * {
+            color: #000000 !important;
+        }
+
+        /* Button styling */
+        .stButton > button {
             background-color: #f0f2f6;
             color: #000000;
         }
+
+        /* Table and DataFrame styling */
         .stDataFrame, .stTable {
             color: #000000;
         }
     </style>
 """, unsafe_allow_html=True)
-
-
-
 
 # --- APP TITLE ---
 st.title("📈 Stock Tracker")
