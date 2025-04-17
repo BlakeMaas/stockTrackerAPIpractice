@@ -13,42 +13,32 @@ theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
 if theme == "Dark":
     st.markdown("""
         <style>
-            body {
+            body, .stApp {
                 background-color: #0e1117;
                 color: #fafafa;
             }
-            .stApp {
-                background-color: #0e1117;
-                color: #fafafa;
+            .stRadio > label, .stRadio div {
+                color: #fafafa !important;
             }
-            .css-1d391kg, .css-1cpxqw2, .stButton>button {
+            .stButton>button {
                 background-color: #262730;
                 color: #fafafa;
-            }
-            /* Force radio button text to be light */
-            div[data-baseweb="radio"] label {
-                color: #fafafa !important;
             }
         </style>
     """, unsafe_allow_html=True)
 else:
     st.markdown("""
         <style>
-            body {
+            body, .stApp {
                 background-color: #ffffff;
                 color: #000000;
             }
-            .stApp {
-                background-color: #ffffff;
-                color: #000000;
+            .stRadio > label, .stRadio div {
+                color: #000000 !important;
             }
-            .css-1d391kg, .css-1cpxqw2, .stButton>button {
+            .stButton>button {
                 background-color: #f0f2f6;
                 color: #000000;
-            }
-            /* Force radio button text to be dark */
-            div[data-baseweb="radio"] label {
-                color: #000000 !important;
             }
         </style>
     """, unsafe_allow_html=True)
