@@ -4,13 +4,13 @@ from utils import fetch_daily_stock_data
 import pandas as pd
 import os
 
-# --- Set config (must be first!) ---
+# --- Page config (must be first Streamlit call) ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
 
-# --- THEME TOGGLE ---
+# --- Theme toggle ---
 theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
 
-# --- Apply custom CSS based on theme ---
+# --- Apply custom styles based on theme ---
 if theme == "Dark":
     st.markdown("""
         <style>
@@ -44,20 +44,24 @@ else:
         </style>
     """, unsafe_allow_html=True)
 
-# --- App Title ---
+# --- Title ---
 st.title("📈 Stock Tracker")
 
-# --- User Input ---
+# --- User input ---
 symbol = st.text_input("Enter a stock symbol (e.g., AAPL)", value="AAPL")
 
-# --- Fetch & Display Data ---
+# --- Fetch and show stock data ---
 if symbol:
     raw_data = fetch_daily_stock_data(symbol)
 
-    # Show raw API response (for debugging)
-    st.write("🔍 Raw API Response:", raw_data)
+    # Only show a few top-level keys to avoid exposing sensitive data
+    if isinstance(raw_data, dict):
+        sample = {k: raw_data[k] for k in list(raw_data)[:2]}
+        st.write("🔍 API Response (summary):", sample)
+    else:
+        st.warning("⚠️ Unexpected response format.")
 
-    # Handle different possible responses
+    # Handle successful fetch
     if "Time Series (Daily)" in raw_data:
         ts = raw_data["Time Series (Daily)"]
         df = pd.DataFrame(ts).T
@@ -73,11 +77,15 @@ if symbol:
         st.line_chart(df["Close"])
         st.dataframe(df.head(10))
 
+    # Handle known API issues
     elif "Note" in raw_data:
         st.warning("⚠️ You're hitting the API rate limit. Try again in 60 seconds.")
 
     elif "Error Message" in raw_data:
         st.error(f"❌ Alpha Vantage error: {raw_data['Error Message']}")
+
+    elif "Information" in raw_data:
+        st.warning("ℹ️ Info: " + raw_data["Information"])
 
     else:
         st.error("❌ Unknown error. Please check your API key and stock symbol.")
