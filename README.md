@@ -21,5 +21,5 @@ A simple Streamlit app that allows users to search for stock symbols (like `AAPL
    cd stockTrackerAPIpractice
 ## 🧪 CI/CD Status
 
-[![CI](https://github.com/BlakeMaas/stockTrackerAPIpractice/actions/workflows/CI.yml/badge.svg)](https://github.com/BlakeMaas/stockTrackerAPIpractice/actions/workflows/CI.yml)
+[![CI](https://github.com/BlakeMaas/stockTrackerAPIpractice/actions/workflows/CI.yml/badge.svg)](https://github.com/BlakeMaas/.github/workflows/ci-cd.yml)
 
