@@ -25,7 +25,6 @@ if theme == "Dark":
                 background-color: #262730;
                 color: #fafafa;
             }
-            /* Force radio button text to be light */
             div[data-baseweb="radio"] label {
                 color: #fafafa !important;
             }
@@ -46,7 +45,6 @@ else:
                 background-color: #f0f2f6;
                 color: #000000;
             }
-            /* Force radio button text to be dark */
             div[data-baseweb="radio"] label {
                 color: #000000 !important;
             }
@@ -63,6 +61,13 @@ symbol = st.text_input("Enter a stock symbol (e.g., AAPL)", value="AAPL")
 if symbol:
     raw_data = fetch_daily_stock_data(symbol)
 
+    # Show high-level keys for debug (no sensitive values!)
+    if isinstance(raw_data, dict):
+        st.write(" API Response Keys:", list(raw_data.keys())[:3])
+    else:
+        st.warning("⚠️ Unexpected API response format.")
+
+    # Handle valid data
     if "Time Series (Daily)" in raw_data:
         ts = raw_data["Time Series (Daily)"]
         df = pd.DataFrame(ts).T
@@ -77,5 +82,13 @@ if symbol:
         df = df.astype(float)
         st.line_chart(df["Close"])
         st.dataframe(df.head(10))
+
+    # Handle known Alpha Vantage responses
+    elif "Note" in raw_data:
+        st.warning("⚠️ API rate limit exceeded. Try again in about 60 seconds.")
+    elif "Error Message" in raw_data:
+        st.error(f"❌ Invalid symbol or API call: {raw_data['Error Message']}")
+    elif "Information" in raw_data:
+        st.warning("ℹ️ Info from API: Request limit reached or invalid key.")
     else:
-        st.error("Failed to fetch data. Please check the symbol.")
+        st.error("❌ Failed to fetch data. Please check the symbol or your API key.")
