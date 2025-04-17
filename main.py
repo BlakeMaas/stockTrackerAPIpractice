@@ -2,15 +2,17 @@
 import streamlit as st
 from utils import fetch_daily_stock_data
 import pandas as pd
-
 import os
-st.text(f"API Key Present: {bool(os.getenv('ALPHA_VANTAGE_API_KEY'))}")
 
-# --- PAGE CONFIG ---
+# --- Must be first! ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
+
+# Optional: Debug API key loading
+st.text(f"API Key Present: {bool(os.getenv('ALPHA_VANTAGE_API_KEY'))}")
 
 # --- THEME TOGGLE ---
 theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
+...
 
 # --- Apply CSS based on theme selection ---
 if theme == "Dark":
