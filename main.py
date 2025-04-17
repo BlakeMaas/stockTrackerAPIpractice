@@ -2,57 +2,13 @@
 import streamlit as st
 from utils import fetch_daily_stock_data
 import pandas as pd
-import os
-
-
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
 
-# --- THEME TOGGLE ---
-theme = st.radio("Choose Theme", ["Light", "Dark"], horizontal=True)
-st.text(f"API Key present? {'Yes' if os.getenv('ALPHA_VANTAGE_API_KEY') else 'No'}")
-# --- Apply CSS based on theme selection ---
-if theme == "Dark":
-    st.markdown("""
-        <style>
-            body {
-                background-color: #0e1117;
-                color: #fafafa;
-            }
-            .stApp {
-                background-color: #0e1117;
-                color: #fafafa;
-            }
-            .css-1d391kg, .css-1cpxqw2, .stButton>button {
-                background-color: #262730;
-                color: #fafafa;
-            }
-            div[data-baseweb="radio"] label {
-                color: #fafafa !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
-else:
-    st.markdown("""
-        <style>
-            body {
-                background-color: #ffffff;
-                color: #000000;
-            }
-            .stApp {
-                background-color: #ffffff;
-                color: #000000;
-            }
-            .css-1d391kg, .css-1cpxqw2, .stButton>button {
-                background-color: #f0f2f6;
-                color: #000000;
-            }
-            div[data-baseweb="radio"] label {
-                color: #000000 !important;
-            }
-        </style>
-    """, unsafe_allow_html=True)
+# --- Simulated Theme Toggle (informational only) ---
+theme = st.radio("Choose Theme", ["Dark", "Light"], horizontal=True)
+st.caption("⚠️ Theme changes require browser refresh to fully apply.")
 
 # --- APP TITLE ---
 st.title("📈 Stock Tracker")
@@ -64,13 +20,6 @@ symbol = st.text_input("Enter a stock symbol (e.g., AAPL)", value="AAPL")
 if symbol:
     raw_data = fetch_daily_stock_data(symbol)
 
-    # Show high-level keys for debug (no sensitive values!)
-    if isinstance(raw_data, dict):
-        st.write(" API Response Keys:", list(raw_data.keys())[:3])
-    else:
-        st.warning("⚠️ Unexpected API response format.")
-
-    # Handle valid data
     if "Time Series (Daily)" in raw_data:
         ts = raw_data["Time Series (Daily)"]
         df = pd.DataFrame(ts).T
@@ -86,7 +35,6 @@ if symbol:
         st.line_chart(df["Close"])
         st.dataframe(df.head(10))
 
-    # Handle known Alpha Vantage responses
     elif "Note" in raw_data:
         st.warning("⚠️ API rate limit exceeded. Try again in about 60 seconds.")
     elif "Error Message" in raw_data:
@@ -95,4 +43,3 @@ if symbol:
         st.warning("ℹ️ Info from API: Request limit reached or invalid key.")
     else:
         st.error("❌ Failed to fetch data. Please check the symbol or your API key.")
-        
