@@ -3,6 +3,9 @@ import streamlit as st
 from utils import fetch_daily_stock_data
 import pandas as pd
 
+import os
+st.text(f"API Key Present: {bool(os.getenv('ALPHA_VANTAGE_API_KEY'))}")
+
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
 
