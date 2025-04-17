@@ -24,6 +24,9 @@ if theme == "Dark":
             div[data-baseweb="radio"] label {
                 color: #fafafa !important;
             }
+            .stRadio > div {
+                color: #fafafa !important;
+            }
             .stButton>button {
                 background-color: #262730;
                 color: #fafafa;
@@ -47,6 +50,9 @@ else:
             div[data-baseweb="radio"] label {
                 color: #000000 !important;
             }
+            .stRadio > div {
+                color: #000000 !important;
+            }
             .stButton>button {
                 background-color: #f0f2f6;
                 color: #000000;
@@ -56,6 +62,7 @@ else:
             }
         </style>
     """, unsafe_allow_html=True)
+
 
 # --- APP TITLE ---
 st.title("📈 Stock Tracker")
