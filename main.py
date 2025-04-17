@@ -2,6 +2,9 @@
 import streamlit as st
 from utils import fetch_daily_stock_data
 import pandas as pd
+import os
+st.text(f"API Key present? {'Yes' if os.getenv('ALPHA_VANTAGE_API_KEY') else 'No'}")
+
 
 # --- PAGE CONFIG ---
 st.set_page_config(page_title="Stock Tracker", layout="centered")
@@ -92,3 +95,4 @@ if symbol:
         st.warning("ℹ️ Info from API: Request limit reached or invalid key.")
     else:
         st.error("❌ Failed to fetch data. Please check the symbol or your API key.")
+        
